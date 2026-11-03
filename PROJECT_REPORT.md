@@ -7,11 +7,10 @@
 ---
 
 ### GROUP MEMBERS:
-| Name of Student | Division – Roll No. | Role in Project |
+| Name of Student | Division – Roll No. | Allocated Project Role |
 | :--- | :--- | :--- |
-| **Darji Prince** | B49 – 24004501210069 | Frontend Lead / UI/UX Designer |
-| **Panchal Jaimit** | B27 – 24004501210237 | Backend Architect / API Integration |
-| **Panchal Nirav** | B48 – 24004501210235 | Database Architect / QA & Documentation |
+| **Thakker Nupur** | B-55 | Frontend Lead & UI/UX Designer |
+| **Shah Dinkal** | B-46 | Backend Architect & Database Lead |
 
 **Submitted To:** [Nirav Sir]  
 **Academic Year:** 2026 – 2027  
@@ -141,11 +140,10 @@ To engineer, evaluate, and deploy a secure, responsive, full-stack Hospital Mana
 ## 2. PROJECT PLANNING
 
 ### 2.1 Team Details and Roles
-| Member Name | Division - Roll No. | Allocated Responsibilities & Deliverables |
+| Member Name | Division – Roll No. | Allocated Responsibilities & Deliverables |
 | :--- | :--- | :--- |
-| **Darji Prince** | B49 – 24004501210069 | **Frontend Architecture:** UI/UX design, React component library, Tailwind color system, Responsive Patient Portal & Admin Workspace layouts, Recharts analytics integration, Axios API client setup. |
-| **Panchal Jaimit** | B27 – 24004501210237 | **Backend Architecture:** Express REST API controllers, JWT authentication middleware, Role-based route guards, error handling middleware, appointment booking transaction logic, Render CI/CD configuration. |
-| **Panchal Nirav** | B48 – 24004501210235 | **Database Architecture & QA:** Relational schema design in Prisma, TiDB Cloud database provisioning, database seeding scripts, integration testing, system documentation, and Project Report compilation. |
+| **Thakker Nupur** | B-55 | **Frontend Architecture & UI/UX Design:** Implementation of the responsive React client, Tailwind CSS hospital design tokens, interactive Patient Portal, doctor booking appointment interface, printable medical prescription styling, and reusable component libraries. |
+| **Shah Dinkal** | B-46 | **Backend Architecture, Database & DevOps:** Implementation of Express REST API routes, Prisma ORM schema design, TiDB Cloud MySQL database setup, JWT authentication middleware, collision-free slot validation logic, and cloud deployment on Render. |
 
 ### 2.2 Proposed Timeline
 | Project Activity Phase | Month 1 | Month 2 | Month 3 | Month 4 | Month 5 | Month 6 |
