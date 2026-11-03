@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: icareplus-hospital
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: "npm install && npm run build:prod"
+    startCommand: "npm run start:prod"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        value: "*"
