@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>i_CarePlus – College Project Report</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm;
+    }
+    body {
+      font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+      color: #1E293B;
+      line-height: 1.6;
+      background-color: #F8FAFC;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .page-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      padding: 60px 80px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border-radius: 8px;
+    }
+    .cover-page {
+      text-align: center;
+      border: 3px double #123B5D;
+      padding: 60px 40px;
+      border-radius: 6px;
+      margin-bottom: 60px;
+      page-break-after: always;
+    }
+    .univ-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #123B5D;
+      letter-spacing: 1.5px;
+      margin: 0 0 10px 0;
+    }
+    .dept-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #0EA5A4;
+      margin: 0 0 40px 0;
+      border-bottom: 2px solid #0EA5A4;
+      display: inline-block;
+      padding-bottom: 8px;
+    }
+    .report-badge {
+      font-size: 18px;
+      font-weight: 700;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 20px 0;
+    }
+    .proj-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #123B5D;
+      margin: 10px 0;
+    }
+    .proj-tagline {
+      font-size: 18px;
+      font-style: italic;
+      color: #0EA5A4;
+      margin: 0 0 50px 0;
+    }
+    .meta-box {
+      margin-top: 40px;
+      text-align: left;
+    }
+    .section-title {
+      color: #123B5D;
+      font-size: 24px;
+      font-weight: 800;
+      border-bottom: 2px solid #0EA5A4;
+      padding-bottom: 6px;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+    .subsection-title {
+      color: #0EA5A4;
+      font-size: 19px;
+      font-weight: 700;
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 14px;
+    }
+    th {
+      background-color: #123B5D;
+      color: #FFFFFF;
+      font-weight: 700;
+      text-align: left;
+      padding: 10px 14px;
+      border: 1px solid #CBD5E1;
+    }
+    td {
+      padding: 9px 14px;
+      border: 1px solid #E2E8F0;
+      color: #334155;
+    }
+    tr:nth-child(even) {
+      background-color: #F8FAFC;
+    }
+    .bullet-item {
+      margin-bottom: 8px;
+      padding-left: 10px;
+    }
+    .bullet-label {
+      font-weight: 700;
+      color: #123B5D;
+    }
+    .diagram-box {
+      background: #F1F5F9;
+      border-left: 4px solid #0EA5A4;
+      border: 1px solid #CBD5E1;
+      border-left-width: 4px;
+      padding: 16px 20px;
+      border-radius: 4px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      white-space: pre;
+      margin: 16px 0;
+      color: #0F172A;
+    }
+    .page-break {
+      page-break-after: always;
+      margin-top: 40px;
+      border-top: 2px dashed #E2E8F0;
+      padding-top: 40px;
+    }
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #123B5D;
+      color: #FFFFFF;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .print-btn:hover {
+      background: #0EA5A4;
+    }
+    @media print {
+      body {
+        background: #FFFFFF;
+        padding: 0;
+      }
+      .page-container {
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .print-btn {
+        display: none;
+      }
+      .page-break {
+        border-top: none;
+        padding-top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+
+<div class="page-container">
+
+  <!-- COVER PAGE -->
+  <div class="cover-page">
+    <div class="univ-title">L.J. UNIVERSITY</div>
+    <div class="dept-title">DEPARTMENT OF COMPUTER APPLICATIONS</div>
+    <div class="report-badge">Project Report On</div>
+    <div class="proj-title">i_CarePlus – Professional Hospital Management System</div>
+    <div class="proj-tagline">“Your Health, Our Priority.”</div>
+
+    <div class="meta-box">
+      <div style="font-weight: 700; color: #123B5D; margin-bottom: 8px; text-align: center;">SUBMITTED BY (GROUP MEMBERS):</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name of Student</th>
+            <th>Division – Roll No.</th>
+            <th>Allocated Project Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Thakker Nupur</strong></td>
+            <td>B-55</td>
+            <td>Frontend Lead & UI/UX Designer</td>
+          </tr>
+          <tr>
+            <td><strong>Shah Dinkal</strong></td>
+            <td>B-46</td>
+            <td>Backend Architect & Database Lead</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="text-align: center; margin-top: 30px;">
+        <div style="color: #64748B; font-weight: 700; font-size: 14px;">SUBMITTED TO:</div>
+        <div style="color: #0EA5A4; font-weight: 800; font-size: 20px; margin: 4px 0;">[Nirav Sir]</div>
+        <div style="color: #64748B; font-size: 14px;">Academic Year: 2026 – 2027</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="page-break"></div>
+  <div class="section-title">TABLE OF CONTENTS</div>
+  <table style="width: 100%;">
+    <tbody>
+      <tr><td><strong>1. Introduction</strong></td><td style="text-align: right;">Page 1</td></tr>
+      <tr><td style="padding-left: 20px;">1.1 Existing System</td><td style="text-align: right;">Page 1</td></tr>
+      <tr><td style="padding-left: 20px;">1.2 Need for the New System</td><td style="text-align: right;">Page 2</td></tr>
+      <tr><td style="padding-left: 20px;">1.3 Objective of the New System</td><td style="text-align: right;">Page 2</td></tr>
+      <tr><td style="padding-left: 20px;">1.4 Problem Definition</td><td style="text-align: right;">Page 2</td></tr>
+      <tr><td style="padding-left: 20px;">1.5 Core Components</td><td style="text-align: right;">Page 3</td></tr>
+      <tr><td style="padding-left: 20px;">1.6 Project Profile</td><td style="text-align: right;">Page 3</td></tr>
+      <tr><td style="padding-left: 20px;">1.7 Assumptions and Constraints</td><td style="text-align: right;">Page 4</td></tr>
+      <tr><td style="padding-left: 20px;">1.8 Advantages and Limitations</td><td style="text-align: right;">Page 4</td></tr>
+      <tr><td><strong>2. Project Planning</strong></td><td style="text-align: right;">Page 5</td></tr>
+      <tr><td style="padding-left: 20px;">2.1 Team Details and Roles</td><td style="text-align: right;">Page 5</td></tr>
+      <tr><td style="padding-left: 20px;">2.2 Proposed Timeline</td><td style="text-align: right;">Page 5</td></tr>
+      <tr><td><strong>3. Requirement Determination & Analysis</strong></td><td style="text-align: right;">Page 6</td></tr>
+      <tr><td style="padding-left: 20px;">3.1 Requirement Determination (Functional & Non-Functional)</td><td style="text-align: right;">Page 6</td></tr>
+      <tr><td style="padding-left: 20px;">3.2 Targeted Users</td><td style="text-align: right;">Page 7</td></tr>
+      <tr><td><strong>4. System Design</strong></td><td style="text-align: right;">Page 8</td></tr>
+      <tr><td style="padding-left: 20px;">4.1 Use Case Diagram & Actor Analysis</td><td style="text-align: right;">Page 8</td></tr>
+      <tr><td style="padding-left: 20px;">4.2 Class Diagram & Entity Relationships</td><td style="text-align: right;">Page 9</td></tr>
+      <tr><td style="padding-left: 20px;">4.3 Interaction / Sequence Diagrams</td><td style="text-align: right;">Page 10</td></tr>
+      <tr><td style="padding-left: 20px;">4.4 Activity Diagrams</td><td style="text-align: right;">Page 11</td></tr>
+      <tr><td style="padding-left: 20px;">4.5 Data Dictionary</td><td style="text-align: right;">Page 12</td></tr>
+      <tr><td><strong>5. Development</strong></td><td style="text-align: right;">Page 14</td></tr>
+      <tr><td style="padding-left: 20px;">5.1 Development Approach</td><td style="text-align: right;">Page 14</td></tr>
+      <tr><td style="padding-left: 20px;">5.2 Coding Standards & Architecture</td><td style="text-align: right;">Page 14</td></tr>
+      <tr><td style="padding-left: 20px;">5.3 GitHub Repository Details</td><td style="text-align: right;">Page 15</td></tr>
+      <tr><td style="padding-left: 20px;">5.4 AI Tools, Libraries & APIs Used</td><td style="text-align: right;">Page 15</td></tr>
+      <tr><td style="padding-left: 20px;">5.5 Screenshots & Implementation Details</td><td style="text-align: right;">Page 16</td></tr>
+      <tr><td><strong>6. Proposed Enhancements</strong></td><td style="text-align: right;">Page 18</td></tr>
+      <tr><td><strong>7. Conclusion</strong></td><td style="text-align: right;">Page 19</td></tr>
+      <tr><td><strong>8. Bibliography & References</strong></td><td style="text-align: right;">Page 20</td></tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 1 -->
+  <div class="page-break"></div>
+  <div class="section-title">1. INTRODUCTION</div>
+  <p>This project report presents the comprehensive analysis, system design, architectural modeling, and full-stack implementation of <strong>i_CarePlus – Professional Hospital Management System</strong>. The document adheres strictly to the academic guidelines of the Department of Computer Applications, L.J. University, covering the domain context, requirement engineering, relational database design, REST API architecture, user experience implementations, and cloud deployment.</p>
+
+  <p>i_CarePlus is an enterprise-grade, web-based healthcare software suite designed to bridge the operational gap between healthcare providers, clinical staff, administrators, and patients. Built using modern cloud-native web technologies (React.js, Node.js, Express, Prisma ORM, and MySQL/TiDB Cloud), the system provides role-based access control, collision-free appointment scheduling, electronic medical records (EMR), automated printable prescriptions, simulated patient billing, and real-time administrative analytics dashboards.</p>
+
+  <div class="subsection-title">1.1 Existing System</div>
+  <p>In traditional healthcare clinics and legacy hospital setups, operations frequently depend on manual physical paperwork, decentralized ledger books, phone-call-based appointment scheduling, and standalone legacy desktop systems. Key limitations of this conventional operational flow include:</p>
+  <ul>
+    <li class="bullet-item"><span class="bullet-label">Paper Register Inefficiency:</span> Manual record-keeping in registers leads to frequent data duplication, human typographical errors, and physical wear-and-tear of paper documents.</li>
+    <li class="bullet-item"><span class="bullet-label">Scheduling Friction:</span> Patients must visit the reception counter physically or wait in long telephone queues to verify doctor availability and book time slots.</li>
+    <li class="bullet-item"><span class="bullet-label">Slot Collisions:</span> High vulnerability to double-booking errors and scheduling overlaps due to lack of a centralized atomic reservation mechanism.</li>
+    <li class="bullet-item"><span class="bullet-label">Prescription Loss:</span> Handwritten clinical notes and paper prescriptions are easily lost, damaged, or misread by pharmacies and patients.</li>
+    <li class="bullet-item"><span class="bullet-label">Decentralized Billing & Analytics:</span> Hospital management lacks real-time operational insights regarding departmental patient flow, doctor utilization, and financial revenue trends.</li>
+  </ul>
+  <p><em>Typical Existing Workflow:</em> Patient physical arrival → Manual registration queue → Paper slip creation → Doctor consultation → Handwritten prescription slip → Pharmacy queue → Manual paper invoice generation → Physical cash handling.</p>
+
+  <div class="subsection-title">1.2 Need for the New System</div>
+  <ul>
+    <li class="bullet-item"><span class="bullet-label">Patient Self-Service:</span> Patients can access their health profile, doctor schedules, invoices, and diagnostic records 24/7 from any device without visiting hospital reception.</li>
+    <li class="bullet-item"><span class="bullet-label">Atomic Conflict Prevention:</span> Real-time database validation ensures that once an appointment slot is reserved for a specific doctor, it cannot be booked concurrently by another user.</li>
+    <li class="bullet-item"><span class="bullet-label">Printable Digital Prescriptions:</span> Provides patients with transparent, clean, and printable prescription summaries including medicine dosage, duration, and doctor instructions.</li>
+    <li class="bullet-item"><span class="bullet-label">Strict Role-Based Security:</span> Guarantees strict data isolation between hospital administrators, clinical doctors, and registered patients via signed JSON Web Tokens (JWT).</li>
+    <li class="bullet-item"><span class="bullet-label">Executive Intelligence:</span> Empowers executive leadership with interactive visual analytics on patient registrations, department load distribution, and financial collections.</li>
+  </ul>
+
+  <div class="subsection-title">1.3 Objective of the New System</div>
+  <ul>
+    <li class="bullet-item"><span class="bullet-label">Modern Web Architecture:</span> Develop a high-performance single-page application using React 18 and Tailwind CSS with a clean medical-grade Navy Blue and Teal palette.</li>
+    <li class="bullet-item"><span class="bullet-label">Robust Backend API:</span> Implement a scalable RESTful API with Node.js and Express following MVC pattern with input validation and centralized error handlers.</li>
+    <li class="bullet-item"><span class="bullet-label">Relational Database Design:</span> Architect an ACID-compliant relational schema in MySQL using Prisma ORM with 13 connected entities and referential integrity.</li>
+    <li class="bullet-item"><span class="bullet-label">Distinct Role Portals:</span> Provide dual dedicated environments: a Patient Portal for personal health management and an Admin Workspace for clinical operations.</li>
+    <li class="bullet-item"><span class="bullet-label">Permanent Cloud Deployment:</span> Host the production application permanently in the cloud using TiDB Cloud MySQL and Render with continuous integration.</li>
+  </ul>
+
+  <div class="subsection-title">1.4 Problem Definition</div>
+  <p>To engineer, evaluate, and deploy a secure, responsive, full-stack Hospital Management System (HMS) named <strong>i_CarePlus</strong> that eliminates clinical operational latency, automates appointment scheduling with zero-collision guarantees, safeguards electronic medical history, and provides hospital administrators with centralized control over departments, medical staff, patient billing, and business metrics.</p>
+
+  <div class="subsection-title">1.5 Core Components</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Module Name</th>
+        <th>Primary User</th>
+        <th>Functional Scope & Responsibility</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Authentication & RBAC</strong></td>
+        <td>All Users</td>
+        <td>JWT generation, bcryptjs password hashing (10 salt rounds), secure role verification, and protected route guards.</td>
+      </tr>
+      <tr>
+        <td><strong>Public Web Portal</strong></td>
+        <td>Public Visitors</td>
+        <td>Hospital branding, department showcases, featured medical specialists, patient inquiry contact forms, and testimonials.</td>
+      </tr>
+      <tr>
+        <td><strong>Patient Portal</strong></td>
+        <td>Registered Patients</td>
+        <td>Personalized dashboard, appointment booking engine, appointment history table, medical record review, prescription printing, and profile management.</td>
+      </tr>
+      <tr>
+        <td><strong>Appointment Engine</strong></td>
+        <td>Patients & Admin</td>
+        <td>Doctor availability lookup, date and time-slot selection, atomic collision prevention, and status workflows (Pending, Confirmed, Completed, Cancelled).</td>
+      </tr>
+      <tr>
+        <td><strong>Medical Records (EMR)</strong></td>
+        <td>Patients & Admin</td>
+        <td>Authorized clinical diagnosis logging, visit summaries, treatment recommendations, and chronological medical history.</td>
+      </tr>
+      <tr>
+        <td><strong>Digital Prescriptions</strong></td>
+        <td>Patients & Doctors</td>
+        <td>Prescription issuance, multiple medicine dosage/frequency/instructions tracking, and clean printable doctor prescription layouts.</td>
+      </tr>
+      <tr>
+        <td><strong>Billing & Invoicing</strong></td>
+        <td>Patients & Admin</td>
+        <td>Itemized invoice generation, payment status tracking (Paid, Pending, Overdue), printable invoice receipts, and simulated checkout flow.</td>
+      </tr>
+      <tr>
+        <td><strong>Admin Workspace</strong></td>
+        <td>Hospital Admins</td>
+        <td>Comprehensive dashboard with Recharts analytics (monthly volume, revenue, department distribution), doctor CRUD, and department CRUD.</td>
+      </tr>
+      <tr>
+        <td><strong>Hospital Settings</strong></td>
+        <td>System Admin</td>
+        <td>Hospital configuration, address, phone/emergency contacts, operational hours, and system security credentials.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="subsection-title">1.6 Project Profile</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Implementation Specification</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Project Title</strong></td><td>i_CarePlus – Professional Hospital Management System</td></tr>
+      <tr><td><strong>Tagline</strong></td><td>“Your Health, Our Priority.”</td></tr>
+      <tr><td><strong>Project Category</strong></td><td>Full-Stack Web Application / Cloud Enterprise SaaS</td></tr>
+      <tr><td><strong>Frontend Technology</strong></td><td>React.js (v18.3), Vite, Tailwind CSS, React Router DOM v6, Axios, Lucide React, Recharts</td></tr>
+      <tr><td><strong>Backend Technology</strong></td><td>Node.js (v20+), Express.js, JSON Web Tokens (jsonwebtoken), bcryptjs, Morgan, CORS</td></tr>
+      <tr><td><strong>ORM & Database</strong></td><td>Prisma ORM (v5.19) with MySQL / TiDB Cloud (Serverless MySQL Compatible)</td></tr>
+      <tr><td><strong>Architecture Pattern</strong></td><td>Client-Server Architecture with RESTful APIs and Separation of Concerns (SoC)</td></tr>
+      <tr><td><strong>Version Control</strong></td><td>Git and GitHub (https://github.com/Princedarj/i-careplus.git)</td></tr>
+      <tr><td><strong>Live Cloud Hosting</strong></td><td>Render.com (Node Web Service) + TiDB Cloud (Global AWS Infrastructure)</td></tr>
+      <tr><td><strong>Academic Year</strong></td><td>2026 – 2027 (6 Months Full-Lifecycle Development)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 2 -->
+  <div class="page-break"></div>
+  <div class="section-title">2. PROJECT PLANNING</div>
+  <div class="subsection-title">2.1 Team Details and Roles</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Member Name</th>
+        <th>Division – Roll No.</th>
+        <th>Allocated Responsibilities & Deliverables</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Thakker Nupur</strong></td>
+        <td>B-55</td>
+        <td><strong>Frontend Architecture & UI/UX Design:</strong> Implementation of the responsive React client, Tailwind CSS hospital design tokens, interactive Patient Portal, doctor booking appointment interface, printable medical prescription styling, and reusable component libraries.</td>
+      </tr>
+      <tr>
+        <td><strong>Shah Dinkal</strong></td>
+        <td>B-46</td>
+        <td><strong>Backend Architecture, Database & DevOps:</strong> Implementation of Express REST API routes, Prisma ORM schema design, TiDB Cloud MySQL database setup, JWT authentication middleware, collision-free slot validation logic, and cloud deployment on Render.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="subsection-title">2.2 Proposed Timeline</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Project Activity Phase</th>
+        <th>Month 1</th>
+        <th>Month 2</th>
+        <th>Month 3</th>
+        <th>Month 4</th>
+        <th>Month 5</th>
+        <th>Month 6</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Literature Survey & Clinical Feasibility</td><td>✓</td><td>✓</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>SRS Documentation & Requirement Analysis</td><td>✓</td><td>✓</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Relational Schema & Database Modeling</td><td></td><td>✓</td><td>✓</td><td></td><td></td><td></td></tr>
+      <tr><td>Backend REST API & JWT Implementation</td><td></td><td></td><td>✓</td><td>✓</td><td></td><td></td></tr>
+      <tr><td>Patient Portal UI & Booking Engine</td><td></td><td></td><td>✓</td><td>✓</td><td>✓</td><td></td></tr>
+      <tr><td>Admin Workspace & Recharts Integration</td><td></td><td></td><td></td><td>✓</td><td>✓</td><td></td></tr>
+      <tr><td>Cloud Deployment & TiDB Cloud Setup</td><td></td><td></td><td></td><td></td><td>✓</td><td>✓</td></tr>
+      <tr><td>Full-Stack QA, Performance & Report</td><td></td><td></td><td></td><td></td><td></td><td>✓</td></tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 4 -->
+  <div class="page-break"></div>
+  <div class="section-title">4. SYSTEM DESIGN</div>
+  <div class="subsection-title">4.1 Use Case Diagram Architecture</div>
+  <div class="diagram-box">
++-----------------------------------------------------------------------------------+
+|                             i_CarePlus APPLICATION CORE                           |
+|                                                                                   |
+|   [PATIENT ACTOR]                                                                 |
+|        |---> (Register / Secure Login)                                            |
+|        |---> (Browse Medical Departments & Specialists)                           |
+|        |---> (Book Consultation Slot) &lt;----+--- &lt;&lt;include&gt;&gt; (Check Slot Collision)|
+|        |---> (View Appointment History)    |                                      |
+|        |---> (Access EMR Medical Records)  |                                      |
+|        |---> (Print Official Prescriptions)|                                      |
+|        +---> (Simulate Invoice Settlement) |                                      |
+|                                            |                                      |
+|   [ADMIN ACTOR]                            |                                      |
+|        |---> (Executive Dashboard KPIs)    |                                      |
+|        |---> (Confirm / Cancel Appointment)+                                      |
+|        |---> (Doctor CRUD &amp; Schedule Config)                                      |
+|        |---> (Department Directory CRUD)                                          |
+|        +---> (Print Monthly Revenue &amp; Patient Reports)                            |
++-----------------------------------------------------------------------------------+
+  </div>
+
+  <div class="subsection-title">4.3 Interaction Diagram – Appointment Booking Sequence</div>
+  <div class="diagram-box">
+Patient (React SPA)          Express Server (REST API)        MySQL Database (Prisma)
+        |                                |                              |
+        |-- 1. POST /api/appointments --&gt;|                              |
+        |      { doctorId, date, slot }  |                              |
+        |                                |-- 2. Query Doctor Slot -----&gt;|
+        |                                |      (WHERE doctorId &amp; slot) |
+        |                                |&lt;-- 3. Return Matching Rows --|
+        |                                |                              |
+        |                                |-- [Condition: Slot Booked] -&gt;|
+        |&lt;-- 4. HTTP 400 (Conflict Error)|                              |
+        |                                |                              |
+        |                                |-- [Condition: Slot Vacant] -&gt;|
+        |                                |-- 5. INSERT Appointment ----&gt;|
+        |                                |&lt;-- 6. Generated Row ---------|
+        |&lt;-- 7. HTTP 201 (Booking Saved) |                              |
+        |                                |                              |
+  </div>
+
+  <div class="subsection-title">4.5 Data Dictionary Highlights</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Table</th>
+        <th>Field Name</th>
+        <th>Data Type</th>
+        <th>Constraints</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>users</td><td>id</td><td>INT</td><td>PRIMARY KEY, AUTO_INCREMENT</td><td>Unique user identifier</td></tr>
+      <tr><td>users</td><td>email</td><td>VARCHAR(191)</td><td>UNIQUE, NOT NULL</td><td>Login email address</td></tr>
+      <tr><td>users</td><td>password</td><td>VARCHAR(191)</td><td>NOT NULL</td><td>bcrypt password hash (10 rounds)</td></tr>
+      <tr><td>users</td><td>role</td><td>VARCHAR(50)</td><td>DEFAULT 'PATIENT'</td><td>PATIENT, ADMIN, DOCTOR</td></tr>
+      <tr><td>appointments</td><td>id</td><td>INT</td><td>PRIMARY KEY, AUTO_INCREMENT</td><td>Appointment identifier</td></tr>
+      <tr><td>appointments</td><td>appointmentNo</td><td>VARCHAR(191)</td><td>UNIQUE, NOT NULL</td><td>e.g. APT-2026-001</td></tr>
+      <tr><td>appointments</td><td>date / timeSlot</td><td>DATETIME / VARCHAR</td><td>NOT NULL</td><td>Slot schedule</td></tr>
+      <tr><td>appointments</td><td>status</td><td>VARCHAR(50)</td><td>DEFAULT 'Pending'</td><td>Pending, Confirmed, Completed, Cancelled</td></tr>
+      <tr><td>invoices</td><td>invoiceNo</td><td>VARCHAR(191)</td><td>UNIQUE, NOT NULL</td><td>e.g. INV-2026-001</td></tr>
+      <tr><td>invoices</td><td>amount / status</td><td>DECIMAL / VARCHAR</td><td>NOT NULL</td><td>Billed amount and payment status</td></tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 7 & 8 -->
+  <div class="page-break"></div>
+  <div class="section-title">7. CONCLUSION</div>
+  <p>The development of <strong>i_CarePlus – Professional Hospital Management System</strong> successfully addresses the major operational inefficiencies inherent in conventional healthcare administration. By unifying patient appointment booking, doctor management, clinical records, digital prescriptions, patient billing, and administrative intelligence within a singular cloud-native web platform, i_CarePlus significantly reduces patient wait times and administrative burdens.</p>
+  <p>From an engineering standpoint, this academic project demonstrated the successful integration of modern web technologies: a responsive single-page architecture built with React and Tailwind CSS, an asynchronous REST API built with Node.js and Express, an ACID-compliant relational schema powered by Prisma ORM and MySQL/TiDB Cloud, and a permanent continuous deployment pipeline hosted on Render.com.</p>
+
+  <div class="section-title">8. BIBLIOGRAPHY &amp; REFERENCES</div>
+  <ol>
+    <li>React Documentation, "React – A JavaScript library for building user interfaces", https://react.dev, accessed 2026.</li>
+    <li>Node.js Foundation, "Node.js v20.x Documentation &amp; Asynchronous Runtime", https://nodejs.org/docs, accessed 2026.</li>
+    <li>Express.js Official Documentation, "Fast, unopinionated, minimalist web framework for Node.js", https://expressjs.com, accessed 2026.</li>
+    <li>Prisma ORM Documentation, "Next-generation ORM for Node.js &amp; TypeScript with MySQL", https://www.prisma.io/docs, accessed 2026.</li>
+    <li>TiDB Cloud Documentation, "TiDB Serverless: Fully-managed MySQL-compatible Cloud Database", https://docs.pingcap.com/tidbcloud, accessed 2026.</li>
+    <li>Tailwind CSS, "Utility-First CSS Framework for Rapid UI Development", https://tailwindcss.com/docs, accessed 2026.</li>
+    <li>Recharts Community, "A composable charting library built on React components", https://recharts.org, accessed 2026.</li>
+    <li>Render Documentation, "Deploying Web Services and Node.js Full-Stack Applications", https://render.com/docs, accessed 2026.</li>
+  </ol>
+
+</div>
+
+</body>
+</html>
