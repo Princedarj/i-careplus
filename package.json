@@ -8,6 +8,8 @@
     "server": "npm --prefix server run dev",
     "client": "npm --prefix client run dev",
     "build:client": "npm --prefix client run build",
+    "build:prod": "npm run build:client && cd server && npm install && npx prisma db push && node prisma/seed.js",
+    "start:prod": "cd server && npm start",
     "tunnel": "npx localtunnel --port 5000",
     "tunnel:client": "npx localtunnel --port 5173",
     "install:all": "npm --prefix server install && npm --prefix client install",
