@@ -1,0 +1,30 @@
+{
+  "name": "i-careplus-root",
+  "version": "1.0.0",
+  "description": "i_CarePlus - Professional Hospital Management System",
+  "scripts": {
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,teal\" \"npm run server\" \"npm run client\"",
+    "start": "concurrently -n \"SERVER,CLIENT\" -c \"blue,teal\" \"npm run server\" \"npm run client\"",
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "build:client": "npm --prefix client run build",
+    "tunnel": "npx localtunnel --port 5000",
+    "tunnel:client": "npx localtunnel --port 5173",
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "prisma:push": "npm --prefix server run prisma:migrate",
+    "prisma:seed": "npm --prefix server run prisma:seed",
+    "prisma:studio": "npm --prefix server run prisma:studio"
+  },
+  "keywords": [
+    "hospital-management",
+    "react",
+    "express",
+    "prisma",
+    "mysql"
+  ],
+  "author": "i_CarePlus Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

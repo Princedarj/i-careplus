@@ -1,0 +1,249 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  name          String
+  email         String         @unique
+  password      String
+  role          String         @default("PATIENT") // "PATIENT", "ADMIN", "DOCTOR"
+  phone         String?
+  avatar        String?        @db.Text
+  status        String         @default("ACTIVE")  // "ACTIVE", "INACTIVE"
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  patient       Patient?
+  doctor        Doctor?
+  notifications Notification[]
+
+  @@map("users")
+}
+
+model Patient {
+  id               Int             @id @default(autoincrement())
+  userId           Int             @unique
+  user             User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  dob              DateTime?
+  gender           String?
+  bloodGroup       String?
+  address          String?         @db.Text
+  emergencyContact String?
+  medicalHistory   String?         @db.Text
+  allergies        String?         @db.Text
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  appointments     Appointment[]
+  medicalRecords   MedicalRecord[]
+  prescriptions    Prescription[]
+  invoices         Invoice[]
+
+  @@map("patients")
+}
+
+model Department {
+  id               Int           @id @default(autoincrement())
+  name             String        @unique
+  code             String        @unique
+  description      String?       @db.Text
+  headOfDepartment String?
+  icon             String?       @default("Heart")
+  status           String        @default("ACTIVE")
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  doctors          Doctor[]
+  appointments     Appointment[]
+
+  @@map("departments")
+}
+
+model Doctor {
+  id              Int                  @id @default(autoincrement())
+  userId          Int                  @unique
+  user            User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  departmentId    Int
+  department      Department           @relation(fields: [departmentId], references: [id])
+  qualification   String
+  specialization  String
+  experience      Int                  @default(1)
+  consultationFee Decimal              @default(50.00) @db.Decimal(10, 2)
+  workingDays     String               @default("Mon,Tue,Wed,Thu,Fri")
+  workingHours    String               @default("09:00 AM - 05:00 PM")
+  roomNumber      String?
+  bio             String?              @db.Text
+  status          String               @default("ACTIVE")
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+
+  availabilities  DoctorAvailability[]
+  appointments    Appointment[]
+  medicalRecords  MedicalRecord[]
+  prescriptions   Prescription[]
+
+  @@map("doctors")
+}
+
+model DoctorAvailability {
+  id                  Int     @id @default(autoincrement())
+  doctorId            Int
+  doctor              Doctor  @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  dayOfWeek           String  // "Monday", "Tuesday", etc.
+  startTime           String  // e.g. "09:00 AM"
+  endTime             String  // e.g. "05:00 PM"
+  slotDurationMinutes Int     @default(30)
+  isAvailable         Boolean @default(true)
+
+  @@map("doctor_availabilities")
+}
+
+model Appointment {
+  id                Int            @id @default(autoincrement())
+  appointmentNumber String         @unique
+  patientId         Int
+  patient           Patient        @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  doctorId          Int
+  doctor            Doctor         @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  departmentId      Int
+  department        Department     @relation(fields: [departmentId], references: [id])
+  appointmentDate   DateTime
+  timeSlot          String         // e.g. "10:30 AM"
+  reason            String?        @db.Text
+  status            String         @default("PENDING") // PENDING, CONFIRMED, COMPLETED, CANCELLED
+  notes             String?        @db.Text
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  medicalRecord     MedicalRecord?
+  prescriptions     Prescription[]
+  invoice           Invoice?
+
+  @@map("appointments")
+}
+
+model MedicalRecord {
+  id            Int          @id @default(autoincrement())
+  recordNumber  String       @unique
+  patientId     Int
+  patient       Patient      @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  doctorId      Int
+  doctor        Doctor       @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  appointmentId Int?         @unique
+  appointment   Appointment? @relation(fields: [appointmentId], references: [id], onDelete: SetNull)
+  visitDate     DateTime     @default(now())
+  diagnosis     String
+  treatment     String?      @db.Text
+  symptoms      String?      @db.Text
+  notes         String?      @db.Text
+  vitalsJson    String?      @db.Text // JSON: { bp, heartRate, temp, weight, spo2 }
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@map("medical_records")
+}
+
+model Prescription {
+  id                 Int                    @id @default(autoincrement())
+  prescriptionNumber String                 @unique
+  patientId          Int
+  patient            Patient                @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  doctorId           Int
+  doctor             Doctor                 @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  appointmentId      Int?
+  appointment        Appointment?           @relation(fields: [appointmentId], references: [id], onDelete: SetNull)
+  diagnosis          String?
+  notes              String?                @db.Text
+  issuedDate         DateTime               @default(now())
+  createdAt          DateTime               @default(now())
+  updatedAt          DateTime               @updatedAt
+
+  medicines          PrescriptionMedicine[]
+
+  @@map("prescriptions")
+}
+
+model PrescriptionMedicine {
+  id             Int          @id @default(autoincrement())
+  prescriptionId Int
+  prescription   Prescription @relation(fields: [prescriptionId], references: [id], onDelete: Cascade)
+  medicineName   String
+  dosage         String       // e.g. "500 mg"
+  frequency      String       // e.g. "Twice a day (After Food)"
+  duration       String       // e.g. "5 Days"
+  instructions   String?      // e.g. "Drink plenty of water"
+
+  @@map("prescription_medicines")
+}
+
+model Invoice {
+  id            Int         @id @default(autoincrement())
+  invoiceNumber String      @unique
+  patientId     Int
+  patient       Patient     @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  appointmentId Int?        @unique
+  appointment   Appointment? @relation(fields: [appointmentId], references: [id], onDelete: SetNull)
+  title         String      @default("Medical Consultation & Care")
+  description   String?     @db.Text
+  issueDate     DateTime    @default(now())
+  dueDate       DateTime?
+  totalAmount   Decimal     @default(0.00) @db.Decimal(10, 2)
+  paidAmount    Decimal     @default(0.00) @db.Decimal(10, 2)
+  balance       Decimal     @default(0.00) @db.Decimal(10, 2)
+  status        String      @default("PENDING") // PENDING, PAID, PARTIAL, CANCELLED
+  paymentMethod String?     // CASH, CARD, ONLINE, INSURANCE
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  payments      Payment[]
+
+  @@map("invoices")
+}
+
+model Payment {
+  id            Int      @id @default(autoincrement())
+  invoiceId     Int
+  invoice       Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  transactionId String   @unique
+  amount        Decimal  @db.Decimal(10, 2)
+  paymentMethod String   @default("ONLINE")
+  paymentDate   DateTime @default(now())
+  status        String   @default("SUCCESS") // SUCCESS, FAILED, REFUNDED
+  notes         String?
+
+  @@map("payments")
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+  type      String   @default("INFO") // INFO, APPOINTMENT, BILLING, MEDICAL
+  createdAt DateTime @default(now())
+
+  @@map("notifications")
+}
+
+model HospitalSetting {
+  id             Int      @id @default(1)
+  hospitalName   String   @default("i_CarePlus Medical Center")
+  tagline        String   @default("Your Health, Our Priority.")
+  email          String   @default("contact@icareplus.com")
+  phone          String   @default("+1 (800) 422-7375")
+  emergencyPhone String   @default("+1 (800) 911-CARE")
+  address        String   @default("742 Evergreen Healthcare Ave, Medical District, NY 10001")
+  workingHours   String   @default("Mon - Sun: 24/7 Emergency & Inpatient | OPD: 8:00 AM - 8:00 PM")
+  logoUrl        String?
+  updatedAt      DateTime @updatedAt
+
+  @@map("hospital_settings")
+}
