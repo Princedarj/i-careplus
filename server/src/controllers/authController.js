@@ -2,6 +2,20 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const prisma = require('../config/db');
 
+const parseSafeDate = (d) => {
+  if (!d) return null;
+  const parsed = new Date(d);
+  if (!isNaN(parsed.getTime())) return parsed;
+  if (typeof d === 'string' && d.includes('-')) {
+    const parts = d.split('-');
+    if (parts.length === 3 && parts[2].length === 4) {
+      const alt = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+      if (!isNaN(alt.getTime())) return alt;
+    }
+  }
+  return null;
+};
+
 const generateToken = (user) => {
   return jwt.sign(
     {
@@ -57,7 +71,7 @@ exports.register = async (req, res, next) => {
       const patient = await tx.patient.create({
         data: {
           userId: user.id,
-          dob: dob ? new Date(dob) : null,
+          dob: parseSafeDate(dob),
           gender: gender || null,
           bloodGroup: bloodGroup || null,
           address: address || null,
@@ -311,7 +325,7 @@ exports.updateProfile = async (req, res, next) => {
       await prisma.patient.update({
         where: { id: req.user.patient.id },
         data: {
-          dob: dob ? new Date(dob) : undefined,
+          dob: dob ? parseSafeDate(dob) : undefined,
           gender: gender !== undefined ? gender : undefined,
           bloodGroup: bloodGroup !== undefined ? bloodGroup : undefined,
           address: address !== undefined ? address : undefined,

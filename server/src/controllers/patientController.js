@@ -1,5 +1,19 @@
 const prisma = require('../config/db');
 
+const parseSafeDate = (d) => {
+  if (!d) return null;
+  const parsed = new Date(d);
+  if (!isNaN(parsed.getTime())) return parsed;
+  if (typeof d === 'string' && d.includes('-')) {
+    const parts = d.split('-');
+    if (parts.length === 3 && parts[2].length === 4) {
+      const alt = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+      if (!isNaN(alt.getTime())) return alt;
+    }
+  }
+  return null;
+};
+
 // GET /api/patients (Admin only)
 exports.getAllPatients = async (req, res, next) => {
   try {
@@ -177,7 +191,7 @@ exports.updatePatient = async (req, res, next) => {
     const updatedPatient = await prisma.patient.update({
       where: { id: patientId },
       data: {
-        dob: dob ? new Date(dob) : undefined,
+        dob: dob ? parseSafeDate(dob) : undefined,
         gender: gender !== undefined ? gender : undefined,
         bloodGroup: bloodGroup !== undefined ? bloodGroup : undefined,
         address: address !== undefined ? address : undefined,
