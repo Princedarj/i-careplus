@@ -432,50 +432,41 @@
   <!-- SECTION 4 -->
   <div class="page-break"></div>
   <div class="section-title">4. SYSTEM DESIGN</div>
-  <div class="subsection-title">4.1 Use Case Diagram Architecture</div>
-  <div class="diagram-box">
-+-----------------------------------------------------------------------------------+
-|                             i_CarePlus APPLICATION CORE                           |
-|                                                                                   |
-|   [PATIENT ACTOR]                                                                 |
-|        |---> (Register / Secure Login)                                            |
-|        |---> (Browse Medical Departments & Specialists)                           |
-|        |---> (Book Consultation Slot) &lt;----+--- &lt;&lt;include&gt;&gt; (Check Slot Collision)|
-|        |---> (View Appointment History)    |                                      |
-|        |---> (Access EMR Medical Records)  |                                      |
-|        |---> (Print Official Prescriptions)|                                      |
-|        +---> (Simulate Invoice Settlement) |                                      |
-|                                            |                                      |
-|   [ADMIN ACTOR]                            |                                      |
-|        |---> (Executive Dashboard KPIs)    |                                      |
-|        |---> (Confirm / Cancel Appointment)+                                      |
-|        |---> (Doctor CRUD &amp; Schedule Config)                                      |
-|        |---> (Department Directory CRUD)                                          |
-|        +---> (Print Monthly Revenue &amp; Patient Reports)                            |
-+-----------------------------------------------------------------------------------+
+  
+  <div class="subsection-title">4.1 UML Use Case Diagram & Actor Analysis</div>
+  <p>The Use Case diagram illustrates the functional interactions between the three key system actors (Patient, Doctor, and Hospital Administrator) and the core modules of i_CarePlus:</p>
+  <div style="text-align: center; margin: 20px 0;">
+    <img src="diagrams/use_case_diagram.png" style="width: 100%; max-width: 820px; border: 1px solid #CBD5E1; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);" alt="UML Use Case Diagram" />
+    <div style="font-size: 12px; color: #64748B; margin-top: 6px; font-weight: 600;">Figure 4.1: i_CarePlus UML Use Case Diagram</div>
   </div>
 
-  <div class="subsection-title">4.3 Interaction Diagram – Appointment Booking Sequence</div>
-  <div class="diagram-box">
-Patient (React SPA)          Express Server (REST API)        MySQL Database (Prisma)
-        |                                |                              |
-        |-- 1. POST /api/appointments --&gt;|                              |
-        |      { doctorId, date, slot }  |                              |
-        |                                |-- 2. Query Doctor Slot -----&gt;|
-        |                                |      (WHERE doctorId &amp; slot) |
-        |                                |&lt;-- 3. Return Matching Rows --|
-        |                                |                              |
-        |                                |-- [Condition: Slot Booked] -&gt;|
-        |&lt;-- 4. HTTP 400 (Conflict Error)|                              |
-        |                                |                              |
-        |                                |-- [Condition: Slot Vacant] -&gt;|
-        |                                |-- 5. INSERT Appointment ----&gt;|
-        |                                |&lt;-- 6. Generated Row ---------|
-        |&lt;-- 7. HTTP 201 (Booking Saved) |                              |
-        |                                |                              |
+  <div class="subsection-title">4.2 UML Class Diagram & Relational Entity Model</div>
+  <p>The Class Diagram captures the structural model of the 8 primary entities managed via Prisma ORM with their member attributes, access visibility, methods, and relationship cardinalities:</p>
+  <div style="text-align: center; margin: 20px 0;">
+    <img src="diagrams/class_diagram.png" style="width: 100%; max-width: 820px; border: 1px solid #CBD5E1; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);" alt="UML Class Diagram" />
+    <div style="font-size: 12px; color: #64748B; margin-top: 6px; font-weight: 600;">Figure 4.2: i_CarePlus UML Class Diagram (Prisma Relational Model)</div>
   </div>
 
-  <div class="subsection-title">4.5 Data Dictionary Highlights</div>
+  <div class="subsection-title">4.3 UML Interaction / Sequence Diagram</div>
+  <p>The Sequence Diagram outlines the step-by-step communication between the Client Browser, JWT Authentication Middleware, Express Controller, Prisma ORM, and MySQL Database during an atomic appointment reservation:</p>
+  <div style="text-align: center; margin: 20px 0;">
+    <img src="diagrams/interaction_diagram.png" style="width: 100%; max-width: 820px; border: 1px solid #CBD5E1; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);" alt="Interaction / Sequence Diagram" />
+    <div style="font-size: 12px; color: #64748B; margin-top: 6px; font-weight: 600;">Figure 4.3: Sequence Diagram – Atomic Slot Booking & Collision Prevention</div>
+  </div>
+
+  <div class="subsection-title">4.4 UML Activity Diagram</div>
+  <p>The Activity Diagram tracks the end-to-end clinical workflow across three distinct execution swimlanes: Patient Portal, Server Engine, and Doctor Workflow:</p>
+  <div style="text-align: center; margin: 20px 0;">
+    <img src="diagrams/activity_diagram.png" style="width: 100%; max-width: 820px; border: 1px solid #CBD5E1; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);" alt="UML Activity Diagram" />
+    <div style="font-size: 12px; color: #64748B; margin-top: 6px; font-weight: 600;">Figure 4.4: Activity Diagram – Patient Consultation & Clinical Flow</div>
+  </div>
+
+  <div class="subsection-title">4.5 Data Dictionary Specification</div>
+  <p>The Data Dictionary specifies the table constraints, primary/foreign key definitions, data types, and default values across MySQL tables:</p>
+  <div style="text-align: center; margin: 20px 0;">
+    <img src="diagrams/data_dictionary.png" style="width: 100%; max-width: 820px; border: 1px solid #CBD5E1; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);" alt="Data Dictionary" />
+    <div style="font-size: 12px; color: #64748B; margin-top: 6px; font-weight: 600;">Figure 4.5: Relational Data Dictionary Specification</div>
+  </div>
   <table>
     <thead>
       <tr>
